@@ -2,3 +2,7 @@ body{
     margin:0;
     font-family: sans-serif;
 }
+
+.content{
+    border: 5px solid black;
+}
