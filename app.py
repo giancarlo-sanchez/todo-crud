@@ -29,12 +29,27 @@ def index():
             db.session.add(new_todo)
             db.session.commit()
             return redirect('/')
+
         except:
             return "Error while creating new taks :("
 
     else:
         tasks = Todo.query.order_by(Todo.date_created).all()
         return render_template("index.html", tasks = tasks)
+
+
+
+
+@app.route('/delete/<int:id>')
+def delete(id):
+    todo_to_delete = Todo.query.get_or_404(id)
+    try:
+        db.session.delete(todo_to_delete)
+        db.session.commit()
+        return redirect('/')
+
+    except:
+        return " Oh no we couldn't delete TODO"
 
 #running the app
 if __name__ == "__main__":
